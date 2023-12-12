@@ -10,7 +10,7 @@ import {
   Req,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateUserDto, LoginDto, UpdateUserDto } from '../user.dto';
+import { CreateUserDto, LoginDto, UpdateUserDto } from '../dto/user.dto';
 import { UsersService } from '../services/users.service';
 import { User } from '../models/user.model';
 
