@@ -9,10 +9,12 @@ import {
   UnauthorizedException,
   Req,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto, LoginDto, UpdateUserDto } from '../dto/user.dto';
 import { UsersService } from '../services/users.service';
-import { User } from '../models/user.model';
+import { User } from '../user.schema';
+import { AdminGuard } from 'src/middlewares/authentication.middleware';
 
 @Controller('users')
 export class UsersController {
@@ -48,6 +50,7 @@ export class UsersController {
 
   //GET /users - Listado de usuarios (restringido a administradores).
   @Get()
+  @UseGuards(AdminGuard)
   findAll(@Req() request): Promise<User[]> {
     const user = request.user;
 
@@ -94,6 +97,7 @@ export class UsersController {
 
   //DELETE /users/{id} - Eliminar un usuario (solo administradores).
   @Delete(':id')
+  @UseGuards(AdminGuard)
   async remove(@Param('id') id: string, @Req() request) {
     const currentUser = request.user;
 
