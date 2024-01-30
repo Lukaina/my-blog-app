@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto, LoginDto, UpdateUserDto } from '../dto/user.dto';
 import { UsersService } from '../services/users.service';
-import { User } from '../user.schema';
+import { User } from '../schemas/user.schema';
 import { AdminGuard } from 'src/middlewares/authentication.middleware';
 
 @Controller('users')
